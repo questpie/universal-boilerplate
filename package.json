@@ -1,5 +1,5 @@
 {
-  "name": "@questpie/webapp-boilerplate",
+  "name": "@questpie/universal-boilerplate",
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
