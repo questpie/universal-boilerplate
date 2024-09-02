@@ -32,7 +32,8 @@
       "@questpie/mail/*": ["./packages/mail/src/*"],
       "@questpie/jobs/*": ["./packages/jobs/src/*"],
       "@questpie/redis/*": ["./packages/redis/src/*"],
-      "@questpie/app/*": ["./apps/app/src/*"],
+      "@questpie/web/*": ["./apps/web/src/*"],
+      "@questpie/native/*": ["./apps/native/src/*"],
       "@questpie/ui/*": ["./packages/ui/src/*"],
       "@questpie/transactional/*": ["./packages/transactional/src/*"]
     }

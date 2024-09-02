@@ -7,11 +7,11 @@
     "@types/bun": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5"
   },
   "scripts": {
     "clean": "bun clean:nm && bun clean:lock && bun clean:artifacts",
-    "clean:artifacts": "bunx rimraf --glob ./**/dist ./**/build ./**/out ./**/.next",
+    "clean:artifacts": "bunx rimraf --glob ./**/dist ./**/build ./**/out ./**/.next ./**/.expo",
     "clean:lock": "bunx rimraf --glob ./**/bun.lockb",
     "clean:nm": "bunx rimraf --glob ./**/node_modules",
     "cli": "bun run ./scripts/cli.ts",

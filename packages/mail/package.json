@@ -1,7 +1,9 @@
 {
   "name": "@questpie/mail",
   "module": "src/index.ts",
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "type": "module",
   "devDependencies": {
     "@questpie/shared": "workspace:*",
@@ -11,7 +13,7 @@
     "@types/react": "^18"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0",
+    "typescript": "^5",
     "nodemailer": "^6.9.14",
     "resend": "^4.0.0"
   },

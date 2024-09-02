@@ -1,7 +1,9 @@
 {
   "name": "@questpie/translations",
   "module": "src/index.ts",
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "type": "module",
   "dependencies": {
     "@questpie/shared": "workspace:*"
@@ -10,6 +12,6 @@
     "@types/bun": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5"
   }
 }

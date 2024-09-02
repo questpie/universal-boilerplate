@@ -1,4 +1,4 @@
-# @questpie/app
+# @questpie/web
 
 This is a monorepo boilerplate used inside QUESTPIE.com projects.
 
@@ -15,12 +15,13 @@ This is a monorepo boilerplate used inside QUESTPIE.com projects.
   - [X] Setup
   - [X] Auth
   - [x] Example
-- [x] WebApp - Next.js
+- [x] Web app - Next.js
   - [x] App Router
-  - [x] ShadcnUI - Dark mode - TailwindØ
   - [ ] Auth Pages
   - [ ] App Skeleton
   - [ ] Onboarding skeleton
+- [x] UI GluestackUI - Dark mode - Tailwind/Nativewind
+- [x] Native App - Expo/React Native
 - [x] Lucia Auth Setup
   - [x] Magic Link
   - [x] OAuth example (google)

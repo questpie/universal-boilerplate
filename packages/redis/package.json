@@ -1,7 +1,9 @@
 {
   "name": "@questpie/redis",
   "module": "src/index.ts",
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest"
@@ -10,6 +12,6 @@
     "ioredis": "^5.4.1"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5"
   }
 }

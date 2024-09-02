@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "jsxImportSource": "nativewind",
     "paths": {
       "@questpie/ui/*": ["./src/*"]
     },
@@ -10,5 +11,5 @@
       }
     ]
   },
-  "include": ["./src/**/*", "./next-env.d.ts"]
+  "include": ["./src/**/*", "./next-env.d.ts", "./nativewind-env.d.ts"]
 }
