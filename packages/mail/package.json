@@ -1,9 +1,7 @@
 {
   "name": "@questpie/mail",
   "module": "src/index.ts",
-  "files": [
-    "src"
-  ],
+  "files": ["src"],
   "type": "module",
   "devDependencies": {
     "@questpie/shared": "workspace:*",

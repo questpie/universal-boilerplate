@@ -1,9 +1,7 @@
 {
   "name": "@questpie/transactional",
   "module": "src/index.ts",
-  "files": [
-    "src/index.ts"
-  ],
+  "files": ["src/index.ts"],
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest"

@@ -1,9 +1,7 @@
 {
   "name": "@questpie/cache",
   "module": "src/index.ts",
-  "files": [
-    "src/index.ts"
-  ],
+  "files": ["src/index.ts"],
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest"

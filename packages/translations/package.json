@@ -1,9 +1,7 @@
 {
   "name": "@questpie/translations",
   "module": "src/index.ts",
-  "files": [
-    "src"
-  ],
+  "files": ["src"],
   "type": "module",
   "dependencies": {
     "@questpie/shared": "workspace:*"
