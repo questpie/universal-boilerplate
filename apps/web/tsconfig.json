@@ -1,5 +1,4 @@
 {
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -23,7 +22,8 @@
       "@questpie/ui/*": ["../../packages/ui/src/*"],
       "@questpie/shared/*": ["../../packages/shared/src/*"],
       "@questpie/api/*": ["../api/src/*"]
-    }
+    },
+    "jsxImportSource": "nativewind"
   },
 
   "include": [

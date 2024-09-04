@@ -1,7 +1,8 @@
-import { apiServer } from '@questpie/web/api/api.server'
-import { RootProviders } from '@questpie/web/app/root-providers'
+/** @jsxImportSource react */
+
 import '@questpie/ui/css'
 import { cn } from '@questpie/ui/lib'
+import { RootProviders } from '@questpie/web/app/root-providers'
 import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
 
@@ -20,11 +21,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const sessionResp = await apiServer.auth.session.index.get()
+  // const sessionResp = await apiServer.auth.session.index.get()
+  const sessionResp = { data: null }
 
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
+      <body className={cn('min-h-screen bg-background font-sans antialiased')}>
         <RootProviders authData={sessionResp.data}>{children}</RootProviders>
       </body>
     </html>

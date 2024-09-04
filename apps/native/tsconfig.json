@@ -1,7 +1,6 @@
 {
   "extends": ["../../tsconfig.base.json", "expo/tsconfig.base"],
   "compilerOptions": {
-    "jsxImportSource": "nativewind",
     "strict": true
   },
   "include": [

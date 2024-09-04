@@ -4,10 +4,11 @@ import type React from 'react'
 import { useRef, useState } from 'react'
 import { useServerInsertedHTML } from 'next/navigation'
 import { StyleRegistry, createStyleRegistry } from 'styled-jsx'
-import { Html, Head, Main, NextScript } from 'next/document'
+// eslint-disable-next-line @next/next/no-document-import-in-page
+import { Main } from 'next/document'
+import { flush } from '@gluestack-ui/nativewind-utils/flush'
 // @ts-ignore
 import { AppRegistry } from 'react-native-web'
-import { flush } from '@gluestack-ui/nativewind-utils/flush'
 
 export default function StyledJsxRegistry({
   children,
@@ -22,7 +23,6 @@ export default function StyledJsxRegistry({
   useServerInsertedHTML(() => {
     AppRegistry.registerComponent('Main', () => Main)
     const { getStyleElement } = AppRegistry.getApplication('Main')
-    // console.log(getStyleElement())
     if (!isServerInserted.current) {
       isServerInserted.current = true
       const styles = [getStyleElement(), jsxStyleRegistry.styles(), flush()]
