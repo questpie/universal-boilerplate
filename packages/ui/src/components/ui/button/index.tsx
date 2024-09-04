@@ -1,15 +1,16 @@
 'use client'
-import React, { useMemo } from 'react'
 import { createButton } from '@gluestack-ui/button'
-import { Svg } from 'react-native-svg'
-import type { PressableProps } from 'react-native'
-import { tva } from '@gluestack-ui/nativewind-utils/tva'
-import { withStyleContext, useStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext'
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates'
-import { cssInterop } from 'nativewind'
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates'
-import { ActivityIndicator, Pressable, Text, View, Platform } from 'react-native'
 import type { VariantProps } from '@gluestack-ui/nativewind-utils'
+import { tva } from '@gluestack-ui/nativewind-utils/tva'
+import { withStates } from '@gluestack-ui/nativewind-utils/withStates'
+import { useStyleContext, withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext'
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates'
+import { cn } from '@questpie/ui/lib'
+import { cssInterop } from 'nativewind'
+import React, { useMemo } from 'react'
+import type { PressableProps } from 'react-native'
+import { ActivityIndicator, Platform, Pressable, Text, View } from 'react-native'
+import { Svg } from 'react-native-svg'
 
 const SCOPE = 'BUTTON'
 const ButtonWrapper = React.forwardRef<React.ElementRef<typeof Pressable>, PressableProps>(
@@ -323,17 +324,41 @@ const buttonGroupStyle = tva({
 })
 
 type IButtonProps = Omit<React.ComponentPropsWithoutRef<typeof UIButton>, 'context'> &
-  VariantProps<typeof buttonStyle> & { className?: string }
+  VariantProps<typeof buttonStyle> & {
+    className?: string
+    isLoading?: boolean
+    loadingText?: string
+  }
 
 const Button = React.forwardRef<React.ElementRef<typeof UIButton>, IButtonProps>(
-  ({ className, variant = 'solid', size = 'md', action = 'primary', ...props }, ref) => {
+  (
+    {
+      className,
+      variant = 'solid',
+      size = 'md',
+      action = 'primary',
+      isLoading,
+      loadingText,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <UIButton
         ref={ref}
         {...props}
-        className={buttonStyle({ variant, size, action, class: className })}
+        isDisabled={props.isDisabled || isLoading}
+        className={cn(buttonStyle({ variant, size, action, class: className }))}
         context={{ variant, size, action }}
-      />
+      >
+        {isLoading ? (
+          <>
+            <ButtonSpinner /> {loadingText && <ButtonText>{loadingText}</ButtonText>}
+          </>
+        ) : (
+          props.children
+        )}
+      </UIButton>
     )
   }
 )
@@ -439,4 +464,4 @@ ButtonSpinner.displayName = 'ButtonSpinner'
 ButtonIcon.displayName = 'ButtonIcon'
 ButtonGroup.displayName = 'ButtonGroup'
 
-export { Button, ButtonText, ButtonSpinner, ButtonIcon, ButtonGroup }
+export { Button, ButtonGroup, ButtonIcon, ButtonSpinner, ButtonText }

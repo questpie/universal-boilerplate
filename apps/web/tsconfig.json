@@ -21,7 +21,8 @@
       "@questpie/web/*": ["./src/*"],
       "@questpie/ui/*": ["../../packages/ui/src/*"],
       "@questpie/shared/*": ["../../packages/shared/src/*"],
-      "@questpie/api/*": ["../api/src/*"]
+      "@questpie/api/*": ["../api/src/*"],
+      "@questpie/app/*": ["../../packages/app/src/*"]
     },
     "jsxImportSource": "nativewind"
   },

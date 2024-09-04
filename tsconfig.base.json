@@ -35,7 +35,8 @@
       "@questpie/web/*": ["./apps/web/src/*"],
       "@questpie/native/*": ["./apps/native/src/*"],
       "@questpie/ui/*": ["./packages/ui/src/*"],
-      "@questpie/transactional/*": ["./packages/transactional/src/*"]
+      "@questpie/transactional/*": ["./packages/transactional/src/*"],
+      "@questpie/app/*": ["./packages/app/src/*"]
     }
   }
 }

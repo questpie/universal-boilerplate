@@ -1,0 +1,33 @@
+{
+  "name": "@questpie/app",
+  "module": "src/index.ts",
+  "files": ["src"],
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@questpie/api": "workspace:*"
+  },
+  "dependencies": {
+    "@elysiajs/eden": "^1.1.2",
+    "@gluestack-ui/nativewind-utils": "^1.0.23",
+    "@hookform/resolvers": "^3.9.0",
+    "@questpie/shared": "workspace:*",
+    "@questpie/ui": "workspace:*",
+    "@tanstack/react-query": "^5.54.1",
+    "expo": "~51.0.32",
+    "expo-constants": "~16.0.2",
+    "jotai": "^2.9.3",
+    "jotai-scope": "^0.7.2",
+    "nativewind": "^4.1.4",
+    "pusher-js": "^8.4.0-rc2",
+    "react-hook-form": "^7.53.0",
+    "react-native": "0.74.5",
+    "react-native-gesture-handler": "~2.16.1",
+    "react-native-reanimated": "^3.15.1",
+    "solito": "^4.2.2",
+    "tailwindcss": "^3.4.10"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

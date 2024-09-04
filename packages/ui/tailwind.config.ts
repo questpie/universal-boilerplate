@@ -177,8 +177,8 @@ export default {
         },
       },
       fontFamily: {
-        // heading: undefined,
-        // body: undefined,
+        heading: ['var(--font-sans)'],
+        body: ['var(--font-sans)'],
         // mono: undefined,
         roboto: ['Roboto', 'sans-serif'],
       },

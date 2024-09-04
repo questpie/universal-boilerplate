@@ -1,5 +1,5 @@
 {
-  "name": "native",
+  "name": "@questpie/native",
   "main": "index.js",
   "version": "1.0.0",
   "scripts": {

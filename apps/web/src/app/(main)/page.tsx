@@ -3,7 +3,7 @@
 // import Image from 'next/image'
 // import Link from 'next/link'
 
-import { Button } from '@questpie/ui/components/ui/button'
+import { Button, ButtonText } from '@questpie/ui/components/ui/button'
 import Image from 'next/image'
 
 export default function Home() {
@@ -39,7 +39,9 @@ export default function Home() {
               priority
             />
           </a>
-          <Button>kokot</Button>
+          <Button>
+            <ButtonText>kokot</ButtonText>
+          </Button>
         </div>
       </div>
 

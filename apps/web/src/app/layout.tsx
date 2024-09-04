@@ -26,7 +26,12 @@ export default async function RootLayout({
 
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className={cn('min-h-screen bg-background font-sans antialiased')}>
+      <body
+        className={cn(
+          'min-h-screen bg-background-0 text-background-950 font-body antialiased',
+          fontSans.variable
+        )}
+      >
         <RootProviders authData={sessionResp.data}>{children}</RootProviders>
       </body>
     </html>

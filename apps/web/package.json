@@ -8,25 +8,19 @@
     "start": "next start"
   },
   "dependencies": {
-    "@elysiajs/eden": "^1.1.2",
     "@gluestack-ui/nativewind-utils": "^1.0.23",
-    "@hookform/resolvers": "^3.9.0",
     "@questpie/shared": "workspace:*",
     "@questpie/ui": "workspace:*",
-    "@tanstack/react-query": "^5.52.3",
+    "@questpie/app": "workspace:*",
     "@tanstack/react-query-next-experimental": "^5.52.3",
     "autoprefixer": "^10.4.20",
-    "jotai": "^2.9.3",
-    "jotai-scope": "^0.7.2",
     "nativewind": "^4.1.4",
     "next": "14.2.6",
-    "pusher-js": "^8.4.0-rc2",
     "react": "^18",
     "react-dom": "^18",
     "react-native-web": "^0.19.12"
   },
   "devDependencies": {
-    "@questpie/api": "workspace:*",
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",

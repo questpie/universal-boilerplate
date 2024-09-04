@@ -1,6 +1,6 @@
 'use server'
 
-import { AUTH_COOKIE_NAME } from '@questpie/web/app/(auth)/auth.constants'
+import { AUTH_COOKIE_NAME } from '@questpie/app/modules/auth/auth.constants'
 import { cookies } from 'next/headers'
 
 export async function setSession(token: string | null) {

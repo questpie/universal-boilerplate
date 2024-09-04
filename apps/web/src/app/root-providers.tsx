@@ -1,11 +1,11 @@
 'use client'
 
+import { RootStoreProvider } from '@questpie/app/atoms/root-store'
+import { AuthProvider } from '@questpie/app/modules/auth/auth.provider'
+import { getQueryClient } from '@questpie/app/utils/query-client'
 import { ThemeProvider } from '@questpie/ui/components/theme-provider'
 import { GluestackUIProvider } from '@questpie/ui/components/ui/gluestack-ui-provider'
-import { AuthProvider, type AuthData } from '@questpie/web/app/(auth)/use-auth'
-import { RootStoreProvider } from '@questpie/web/app/_atoms/root-store'
 import StyledJsxRegistry from '@questpie/web/app/styled-jsx-registry'
-import { getQueryClient } from '@questpie/web/utils/query-client'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryStreamedHydration } from '@tanstack/react-query-next-experimental'
 
