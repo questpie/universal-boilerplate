@@ -15,7 +15,7 @@ export function useAuthActions() {
       })
 
       if (res.error) {
-        return null
+        throw new Error(res.error.value)
       }
 
       await setSessionAction(res.data.session.id)
@@ -31,7 +31,7 @@ export function useAuthActions() {
     mutationFn: async () => {
       const res = await apiClient.auth.session.index.delete()
       if (res.error) {
-        return null
+        throw new Error(String(res.error.value))
       }
       await setSessionAction(null)
       return res.data

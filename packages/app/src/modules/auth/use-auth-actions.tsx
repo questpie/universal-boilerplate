@@ -14,7 +14,7 @@ export function useAuthActions() {
       })
 
       if (res.error) {
-        return null
+        throw new Error(res.error.value)
       }
 
       // TODO: set to expo secure storage
@@ -31,7 +31,7 @@ export function useAuthActions() {
     mutationFn: async () => {
       const res = await apiClient.auth.session.index.delete()
       if (res.error) {
-        return null
+        throw new Error(String(res.error.value))
       }
       // TODO: set to expo secure storage
       // await setSessionAction(null)

@@ -17,6 +17,8 @@ export const env = createEnv({
     // server
     PUBLIC_API_URL: Type.String(),
 
+    PUBLIC_APP_URL: Type.String(),
+
     // pusher
     PUBLIC_PUSHER_APP_KEY: Type.String(),
     PUBLIC_PUSHER_APP_CLUSTER: Type.String({ default: '' }), // if you are using soketi the cluster is just for pusher-js satisfaction
@@ -27,6 +29,7 @@ export const env = createEnv({
 
   runtimeEnv: {
     PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     PUBLIC_PUSHER_APP_KEY: process.env.NEXT_PUBLIC_PUSHER_APP_KEY,
     PUBLIC_PUSHER_APP_CLUSTER: process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTER,
     PUBLIC_PUSHER_HOST: process.env.NEXT_PUBLIC_PUSHER_HOST,

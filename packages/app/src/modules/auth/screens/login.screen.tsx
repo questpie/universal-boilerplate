@@ -1,6 +1,6 @@
 'use client'
 import { apiClient } from '@questpie/app/api/api.client'
-import { generalEnv } from '@questpie/shared/env/general.env'
+import { env } from '@questpie/app/env'
 import { Box } from '@questpie/ui/components/ui/box'
 import { Button, ButtonText } from '@questpie/ui/components/ui/button'
 import { Center } from '@questpie/ui/components/ui/center'
@@ -11,13 +11,11 @@ import {
   FormControlLabelText,
 } from '@questpie/ui/components/ui/form-control'
 import { Heading } from '@questpie/ui/components/ui/heading'
-import { HStack } from '@questpie/ui/components/ui/hstack'
-import { CloseIcon, HelpCircleIcon, Icon, MailIcon } from '@questpie/ui/components/ui/icon'
+import { Icon, MailIcon } from '@questpie/ui/components/ui/icon'
 import { Input, InputField } from '@questpie/ui/components/ui/input'
 import { Link, LinkText } from '@questpie/ui/components/ui/link'
-import { Pressable } from '@questpie/ui/components/ui/pressable'
 import { Text } from '@questpie/ui/components/ui/text'
-import { Toast, ToastDescription, ToastTitle, useToast } from '@questpie/ui/components/ui/toast'
+import { useToast } from '@questpie/ui/components/ui/toast'
 import { VStack } from '@questpie/ui/components/ui/vstack'
 import { useMutation } from '@tanstack/react-query'
 import { useState } from 'react'
@@ -31,36 +29,37 @@ export default function LoginScreen() {
     mutationFn: async (email: string) => {
       return apiClient.auth['magic-link'].index.post({
         email,
-        redirectTo: `${generalEnv.PUBLIC_APP_NAME}/login/callback?token={{token}}`,
+        redirectTo: `${env.PUBLIC_APP_URL}/login/callback?token={{token}}`,
       })
     },
   })
 
-  const handleEmailSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    toast.show({
-      render: (props) => {
-        return (
-          <Toast variant='solid' action='success' nativeID={`toast-${props.id}`}>
-            <HStack space='md'>
-              <Icon as={HelpCircleIcon} className='stroke-error-500 mt-0.5' />
-              <VStack space='xs'>
-                <ToastTitle className='font-semibold text-error-500'>Error!</ToastTitle>
-                <ToastDescription size='sm'>Something went wrong.</ToastDescription>
-              </VStack>
-            </HStack>
-            <HStack className='min-[450px]:gap-3 gap-1'>
-              <Button variant='link' size='sm' className='px-3.5 self-center'>
-                <ButtonText>Retry</ButtonText>
-              </Button>
-              <Pressable onPress={() => toast.close(props.id)}>
-                <Icon as={CloseIcon} />
-              </Pressable>
-            </HStack>
-          </Toast>
-        )
-      },
-    })
+  const handleEmailSubmit = (e: any) => {
+    e?.preventDefault?.()
+    magicLinkMutation.mutateAsync(email)
+    // toast.show({
+    //   render: (props) => {
+    //     return (
+    //       <Toast variant='solid' action='error' nativeID={`toast-${props.id}`}>
+    //         <HStack space='md'>
+    //           <Icon as={HelpCircleIcon} className='stroke-error-500 mt-0.5' />
+    //           <VStack space='xs'>
+    //             <ToastTitle className='font-semibold text-error-500'>Error!</ToastTitle>
+    //             <ToastDescription size='sm'>Something went wrong.</ToastDescription>
+    //           </VStack>
+    //         </HStack>
+    //         <HStack className='min-[450px]:gap-3 gap-1'>
+    //           <Button variant='link' size='sm' className='px-3.5 self-center'>
+    //             <ButtonText>Retry</ButtonText>
+    //           </Button>
+    //           <Pressable onPress={() => toast.close(props.id)}>
+    //             <Icon as={CloseIcon} />
+    //           </Pressable>
+    //         </HStack>
+    //       </Toast>
+    //     )
+    //   },
+    // })
 
     // promise(magicLinkMutation.mutateAsync(email), {
     //   loading: 'Sending magic link...',
@@ -95,8 +94,11 @@ export default function LoginScreen() {
                 </Input>
               </FormControl>
               <Button
+                onPress={(e) => {
+                  console.log('yoo')
+                  handleEmailSubmit(e)
+                }}
                 className='w-full gap-2'
-                // type='submit'
                 isLoading={magicLinkMutation.isPending}
                 loadingText='Sending...'
                 disabled={magicLinkMutation.status === 'success'}

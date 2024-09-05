@@ -17,7 +17,7 @@
     "deps:check": "bunx check-dependency-version-consistency .",
     "deps:update": "bunx npm-check-updates -ui -ws",
     "dev:api": "cd apps/api && bun run dev",
-    "dev:app": "cd apps/app && bun run dev",
+    "dev:web": "cd apps/web && bun run dev",
     "dev:worker": "cd apps/api && bun run dev:worker",
     "fix": "bunx @biomejs/biome check --write --unsafe ./packages ./apps",
     "format": "bunx @biomejs/biome format --write ./packages ./apps",

@@ -5,23 +5,21 @@ import { Heading } from '@questpie/ui/components/ui/heading'
 import { Text } from '@questpie/ui/components/ui/text'
 import { VStack } from '@questpie/ui/components/ui/vstack'
 import { useEffect } from 'react'
-import { useRouter } from 'solito/navigation'
+import { useRouter, useSearchParams } from 'solito/navigation'
 
-export default function LoginCallbackScreen(props: {
-  searchParams: Record<string, string | undefined>
-}) {
-  const token = props.searchParams.token
+export default function LoginCallbackScreen() {
+  const searchParams = useSearchParams()
+  const token = searchParams?.get('token') ?? ''
   const { login } = useAuthActions()
   const router = useRouter()
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (!token || login.isPending) return
-    login.mutate(token, {
-      onSuccess: () => {
-        router.push('/')
-      },
+    login.mutateAsync(token).then(() => {
+      router.replace('/')
     })
-  }, [token, login, router])
+  }, [])
 
   return (
     <VStack className='flex justify-center items-center min-h-screen bg-muted'>
