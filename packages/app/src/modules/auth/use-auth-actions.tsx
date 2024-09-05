@@ -33,6 +33,7 @@ export function useAuthActions() {
       if (res.error) {
         throw new Error(String(res.error.value))
       }
+      as
       // TODO: set to expo secure storage
       // await setSessionAction(null)
       return res.data

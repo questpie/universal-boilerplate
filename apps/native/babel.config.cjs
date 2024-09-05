@@ -9,6 +9,8 @@ module.exports = (api) => {
           root: ['../..'],
           alias: {
             '@questpie/ui': '../../packages/ui/src',
+            '@questpie/app': '../../packages/app/src',
+            '@questpie/shared': '../../packages/shared/src',
           },
           extensions: ['.js', '.ts', '.tsx', '.ios.ts', '.android.ts'],
         },

@@ -5,8 +5,8 @@ export default {
   ...tailwindConfig,
   content: [
     ...tailwindConfig.content,
-    './**/*.{html,js,jsx,ts,tsx,mdx}',
-    '../../packages/ui/src/**/*.{html,js,jsx,ts,tsx,mdx}',
-    '../../packages/app/src/**/*.{html,js,jsx,ts,tsx,mdx}',
+    './app/**/*.{js,jsx,ts,tsx}',
+    '../../packages/ui/src/**/*.{js,jsx,ts,tsx}',
+    '../../packages/app/src/**/*.{js,jsx,ts,tsx}',
   ],
 } satisfies Config

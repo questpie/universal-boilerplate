@@ -1,4 +1,4 @@
-import { GluestackUIProvider } from '@questpie/ui/components/ui/gluestack-ui-provider'
+import { RootProviders } from '@questpie/app/components/root-provider'
 import '@questpie/ui/css'
 import 'expo-dev-client'
 import { Stack } from 'expo-router'
@@ -56,17 +56,11 @@ export default function RootLayout() {
   // }
 
   return (
-    <>
-      <GluestackUIProvider>
-        {/* <DeepLinkLayout /> */}
-        {/* <Button>
-          <ButtonText>Ide to tt</ButtonText>
-        </Button> */}
-        <Stack>
-          <Stack.Screen name='index' />
-        </Stack>
-      </GluestackUIProvider>
-    </>
+    <RootProviders initialAuthData={null}>
+      <Stack>
+        <Stack.Screen name='index' />
+      </Stack>
+    </RootProviders>
   )
 
   // return (

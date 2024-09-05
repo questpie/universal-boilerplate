@@ -21,7 +21,7 @@ export function HomeScreen() {
           <Text>Welcome {auth.user.name}</Text>
         ) : (
           <Link href='/login'>
-            <Button>
+            <Button disabled>
               <ButtonText>Login</ButtonText>
             </Button>
           </Link>

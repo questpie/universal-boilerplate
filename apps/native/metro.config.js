@@ -10,9 +10,11 @@ const workspaceRoot = path.resolve(__dirname, '../..')
 const config = getDefaultConfig(projectRoot)
 
 // // Add import aliases
-// config.resolver.alias = {
-//   '@questpie/ui': path.resolve(workspaceRoot, 'packages/ui/src'),
-// }
+config.resolver.alias = {
+  '@questpie/ui': path.resolve(workspaceRoot, 'packages/ui/src'),
+  '@questpie/app': path.resolve(workspaceRoot, 'packages/app/src'),
+  '@questpie/shared': path.resolve(workspaceRoot, 'packages/shared/src'),
+}
 
 // Add the additional `cjs` extension to the resolver
 config.resolver.sourceExts.push('cjs')
@@ -26,7 +28,8 @@ config.resolver.nodeModulesPaths = [
   path.resolve(workspaceRoot, 'node_modules'),
 ]
 // 3. Force Metro to resolve (sub)dependencies only from the `nodeModulesPaths`
-config.resolver.disableHierarchicalLookup = false
+// config.resolver.disableHierarchicalLookup = false
+config.resolver.disableHierarchicalLookup = true
 
 config.transformer = {
   ...config.transformer,

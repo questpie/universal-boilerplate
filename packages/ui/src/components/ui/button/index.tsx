@@ -353,7 +353,7 @@ const Button = React.forwardRef<React.ElementRef<typeof UIButton>, IButtonProps>
       >
         {isLoading ? (
           <>
-            <ButtonSpinner /> {loadingText && <ButtonText>{loadingText}</ButtonText>}
+            <ButtonSpinner /> {!!loadingText && <ButtonText>{loadingText}</ButtonText>}
           </>
         ) : (
           props.children
