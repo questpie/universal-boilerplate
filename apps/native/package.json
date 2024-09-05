@@ -18,10 +18,11 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
-    "@questpie/ui": "workspace:*",
     "@questpie/app": "workspace:*",
+    "@questpie/ui": "workspace:*",
     "@react-navigation/native": "^6.0.2",
     "babel-plugin-module-resolver": "^5.0.2",
+    "burnt": "^0.12.2",
     "expo": "~51.0.32",
     "expo-constants": "~16.0.2",
     "expo-dev-client": "^4.0.25",

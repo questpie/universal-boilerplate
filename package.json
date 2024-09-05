@@ -3,7 +3,8 @@
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@biomejs/biome": "^1.8.3"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -20,11 +21,11 @@
     "dev:web": "cd apps/web && bun run dev",
     "dev:native": "cd apps/native && bun run dev",
     "dev:worker": "cd apps/api && bun run dev:worker",
-    "fix": "bunx @biomejs/biome check --write --unsafe ./packages ./apps",
-    "format": "bunx @biomejs/biome format --write ./packages ./apps",
-    "lint": "bunx @biomejs/biome lint ./packages ./apps",
+    "fix": "bun @biomejs/biome check --write --unsafe ./packages ./apps",
+    "format": "bun @biomejs/biome format --write ./packages ./apps",
+    "lint": "bun @biomejs/biome lint ./packages ./apps",
     "postinstall": "bun deps:check",
     "types:check": "tsc --noEmit"
   },
-  "workspaces": ["apps/*", "packages/*"]
+  "workspaces": ["apps/*", "packages/*"],
 }

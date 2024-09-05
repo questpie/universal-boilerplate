@@ -3,7 +3,6 @@ import { apiClient } from '@questpie/app/api/api.client'
 import { env } from '@questpie/app/env'
 import { Box } from '@questpie/ui/components/ui/box'
 import { Button, ButtonText } from '@questpie/ui/components/ui/button'
-import { Center } from '@questpie/ui/components/ui/center'
 import { Divider } from '@questpie/ui/components/ui/divider'
 import {
   FormControl,
@@ -16,17 +15,14 @@ import { Icon, MailIcon } from '@questpie/ui/components/ui/icon'
 import { Input, InputField } from '@questpie/ui/components/ui/input'
 import { Link, LinkText } from '@questpie/ui/components/ui/link'
 import { Text } from '@questpie/ui/components/ui/text'
-import { useToast } from '@questpie/ui/components/ui/toast'
 import { VStack } from '@questpie/ui/components/ui/vstack'
 import { useMutation } from '@tanstack/react-query'
+import * as Burnt from 'burnt'
 import { useState } from 'react'
 import { Platform } from 'react-native'
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('')
-
-  // make sure this works
-  const toast = useToast()
 
   const magicLinkMutation = useMutation({
     mutationFn: async (email: string) => {
@@ -43,29 +39,10 @@ export default function LoginScreen() {
   const handleEmailSubmit = (e: any) => {
     e?.preventDefault?.()
     magicLinkMutation.mutateAsync(email)
-    // toast.show({
-    //   render: (props) => {
-    //     return (
-    //       <Toast variant='solid' action='error' nativeID={`toast-${props.id}`}>
-    //         <HStack space='md'>
-    //           <Icon as={HelpCircleIcon} className='stroke-error-500 mt-0.5' />
-    //           <VStack space='xs'>
-    //             <ToastTitle className='font-semibold text-error-500'>Error!</ToastTitle>
-    //             <ToastDescription size='sm'>Something went wrong.</ToastDescription>
-    //           </VStack>
-    //         </HStack>
-    //         <HStack className='min-[450px]:gap-3 gap-1'>
-    //           <Button variant='link' size='sm' className='px-3.5 self-center'>
-    //             <ButtonText>Retry</ButtonText>
-    //           </Button>
-    //           <Pressable onPress={() => toast.close(props.id)}>
-    //             <Icon as={CloseIcon} />
-    //           </Pressable>
-    //         </HStack>
-    //       </Toast>
-    //     )
-    //   },
-    // })
+    Burnt.toast({
+      title: 'Email sent',
+      preset: 'done',
+    })
 
     // promise(magicLinkMutation.mutateAsync(email), {
     //   loading: 'Sending magic link...',
@@ -102,7 +79,6 @@ export default function LoginScreen() {
               </FormControl>
               <Button
                 onPress={(e) => {
-                  console.log('yoo')
                   handleEmailSubmit(e)
                 }}
                 className='w-full gap-2'

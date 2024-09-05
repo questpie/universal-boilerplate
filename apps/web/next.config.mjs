@@ -7,6 +7,7 @@ const nextConfig = {
     'react-native-css-interop',
     'react-native-web',
     'react-native',
+    'burnt',
   ],
 
   webpack: (config) => {
