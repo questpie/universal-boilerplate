@@ -1,7 +1,7 @@
 'use client'
 
 import { apiClient } from '@questpie/app/api/api.client'
-import { authAtom } from '@questpie/app/modules/auth/auth.provider'
+import { authAtom } from '@questpie/app/modules/auth/components/auth.provider'
 import { useMutation } from '@tanstack/react-query'
 import { useSetAtom } from 'jotai'
 

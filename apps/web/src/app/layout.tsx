@@ -1,8 +1,9 @@
 /** @jsxImportSource react */
 
+import { apiRsc } from '@questpie/app/api/api.server'
+import { RootProviders } from '@questpie/app/components/root-provider'
 import '@questpie/ui/css'
 import { cn } from '@questpie/ui/lib'
-import { RootProviders } from '@questpie/web/app/root-providers'
 import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
 
@@ -21,8 +22,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  // const sessionResp = await apiServer.auth.session.index.get()
-  const sessionResp = { data: null }
+  const sessionResp = await apiRsc.auth.session.index.get()
 
   return (
     <html lang='en' suppressHydrationWarning>
@@ -32,7 +32,7 @@ export default async function RootLayout({
           fontSans.variable
         )}
       >
-        <RootProviders authData={sessionResp.data}>{children}</RootProviders>
+        <RootProviders initialAuthData={sessionResp.data}>{children}</RootProviders>
       </body>
     </html>
   )
