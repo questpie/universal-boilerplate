@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "@gluestack-ui/nativewind-utils": "^1.0.23",
+    "@questpie/app": "workspace:*",
     "@questpie/shared": "workspace:*",
     "@questpie/ui": "workspace:*",
-    "@questpie/app": "workspace:*",
     "@tanstack/react-query-next-experimental": "^5.52.3",
     "autoprefixer": "^10.4.20",
     "nativewind": "^4.1.4",

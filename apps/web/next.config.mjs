@@ -6,6 +6,7 @@ const nextConfig = {
     'nativewind',
     'react-native-css-interop',
     'react-native-web',
+    'react-native-svg',
     'react-native',
     'burnt',
   ],

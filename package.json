@@ -14,8 +14,8 @@
   },
   "scripts": {
     "clean": "bun clean:nm && bun clean:lock && bun clean:artifacts",
-    "clean:artifacts": "bun rimraf --glob ./**/dist ./**/build ./**/out ./**/.next ./**/.expo",
-    "clean:lock": "bun rimraf --glob ./**/bun.lockb",
+    "clean:artifacts": "bun rimraf \"{packages,apps}/**/dist\" \"{packages,apps}/**/build\" \"{packages,apps}/**/out\" \"{packages,apps}/**/.next\" \"{packages,apps}/**/.expo\"",
+    "clean:lock": "bun rimraf --glob ./bun.lockb",
     "clean:nm": "bun rimraf --glob ./**/node_modules",
     "cli": "bun run ./scripts/cli.ts",
     "deps:check": "bun check-dependency-version-consistency .",
