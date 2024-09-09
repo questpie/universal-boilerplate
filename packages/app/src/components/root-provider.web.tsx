@@ -8,25 +8,21 @@ import { ThemeProvider } from '@questpie/ui/components/theme-provider'
 import { GluestackUIProvider } from '@questpie/ui/components/ui/gluestack-ui-provider'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryStreamedHydration } from '@tanstack/react-query-next-experimental'
-import { Toaster } from 'burnt/web'
 
 export function RootProviders(props: { children: React.ReactNode; initialAuthData: AuthData }) {
   return (
-    <StyledJsxRegistry>
-      <GluestackUIProvider>
-        <RootStoreProvider>
-          <AuthProvider authData={props.initialAuthData}>
-            <QueryClientProvider client={getQueryClient()}>
+    <QueryClientProvider client={getQueryClient()}>
+      <StyledJsxRegistry>
+        <GluestackUIProvider>
+          <RootStoreProvider>
+            <AuthProvider authData={props.initialAuthData}>
               <ReactQueryStreamedHydration>
-                <ThemeProvider>
-                  <Toaster richColors />
-                  {props.children}
-                </ThemeProvider>
+                <ThemeProvider>{props.children}</ThemeProvider>
               </ReactQueryStreamedHydration>
-            </QueryClientProvider>
-          </AuthProvider>
-        </RootStoreProvider>
-      </GluestackUIProvider>
-    </StyledJsxRegistry>
+            </AuthProvider>
+          </RootStoreProvider>
+        </GluestackUIProvider>
+      </StyledJsxRegistry>
+    </QueryClientProvider>
   )
 }

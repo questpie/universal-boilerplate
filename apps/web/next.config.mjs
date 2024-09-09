@@ -1,14 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
   transpilePackages: [
     '@gluestack-ui/nativewind-utils',
     'nativewind',
     'react-native-css-interop',
     'react-native-web',
+    '@react-native/assets',
+    'expo-asset',
+    'expo-modules-core',
     'react-native-svg',
     'react-native',
-    'burnt',
   ],
 
   webpack: (config) => {
@@ -27,6 +28,11 @@ const nextConfig = {
     ]
 
     return config
+  },
+  swcMinify: true,
+  reactStrictMode: false,
+  experimental: {
+    forceSwcTransforms: true,
   },
 }
 

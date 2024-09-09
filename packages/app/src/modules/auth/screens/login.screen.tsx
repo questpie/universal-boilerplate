@@ -2,7 +2,7 @@
 import { apiClient } from '@questpie/app/api/api.client'
 import { env } from '@questpie/app/env'
 import { Box } from '@questpie/ui/components/ui/box'
-import { Button, ButtonText } from '@questpie/ui/components/ui/button'
+import { Button, ButtonIcon, ButtonText } from '@questpie/ui/components/ui/button'
 import { Divider } from '@questpie/ui/components/ui/divider'
 import {
   FormControl,
@@ -15,14 +15,15 @@ import { Icon, MailIcon } from '@questpie/ui/components/ui/icon'
 import { Input, InputField } from '@questpie/ui/components/ui/input'
 import { Link, LinkText } from '@questpie/ui/components/ui/link'
 import { Text } from '@questpie/ui/components/ui/text'
+import { useToastHelper } from '@questpie/ui/components/ui/toast'
 import { VStack } from '@questpie/ui/components/ui/vstack'
 import { useMutation } from '@tanstack/react-query'
-import * as Burnt from 'burnt'
 import { useState } from 'react'
 import { Platform } from 'react-native'
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('')
+  const toast = useToastHelper()
 
   const magicLinkMutation = useMutation({
     mutationFn: async (email: string) => {
@@ -38,17 +39,13 @@ export default function LoginScreen() {
 
   const handleEmailSubmit = (e: any) => {
     e?.preventDefault?.()
-    magicLinkMutation.mutateAsync(email)
-    Burnt.toast({
-      title: 'Email sent',
-      preset: 'done',
-    })
+    // magicLinkMutation.mutateAsync(email)
 
-    // promise(magicLinkMutation.mutateAsync(email), {
-    //   loading: 'Sending magic link...',
-    //   success: 'Magic link sent',
-    //   error: 'Failed to send magic link',
-    // })
+    toast.promise(magicLinkMutation.mutateAsync(email), {
+      loading: 'Sending magic link...',
+      success: 'Magic link sent',
+      error: 'Failed to send magic link',
+    })
   }
 
   return (
@@ -86,7 +83,7 @@ export default function LoginScreen() {
                 loadingText='Sending...'
                 disabled={magicLinkMutation.status === 'success'}
               >
-                {/* <Icon icon='lucide:mail' /> */}
+                <ButtonIcon as={MailIcon} className='text-white' />
                 <ButtonText>Sign in with Email</ButtonText>
               </Button>
             </Box>
@@ -99,11 +96,9 @@ export default function LoginScreen() {
             </HStack>
             <Box className='grid grid-cols-2 gap-4'>
               <Button action='secondary' className='gap-2'>
-                {/* <AddIcon icon='logos:github-icon' /> */}
                 <ButtonText>GitHub</ButtonText>
               </Button>
               <Button action='secondary' className='gap-2'>
-                {/* <Icon icon='logos:google-icon' /> */}
                 <ButtonText>Google</ButtonText>
               </Button>
             </Box>

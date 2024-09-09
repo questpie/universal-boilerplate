@@ -4,6 +4,7 @@ import { OverlayProvider } from '@gluestack-ui/overlay'
 import React, { useEffect, useLayoutEffect } from 'react'
 import { config } from './config'
 import { script } from './script'
+import { ToastProvider } from "@gluestack-ui/toast"
 
 const variableStyleTagId = 'nativewind-style'
 const createStyle = (styleTagId: string) => {
@@ -83,7 +84,7 @@ export function GluestackUIProvider({
           __html: `(${script.toString()})('${mode}')`,
         }}
       />
-      <OverlayProvider>{props.children}</OverlayProvider>
+      <OverlayProvider> <ToastProvider>{props.children}</ToastProvider></OverlayProvider>
     </>
   )
 }

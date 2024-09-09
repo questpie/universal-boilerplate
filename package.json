@@ -13,7 +13,7 @@
     "typescript": "^5"
   },
   "scripts": {
-    "clean": "bun clean:nm && bun clean:lock && bun clean:artifacts",
+    "clean": "bun clean:artifacts && bun clean:lock && bun clean:nm",
     "clean:artifacts": "bun rimraf \"{packages,apps}/**/dist\" \"{packages,apps}/**/build\" \"{packages,apps}/**/out\" \"{packages,apps}/**/.next\" \"{packages,apps}/**/.expo\"",
     "clean:lock": "bun rimraf --glob ./bun.lockb",
     "clean:nm": "bun rimraf --glob ./**/node_modules",
@@ -30,5 +30,8 @@
     "postinstall": "bun deps:check",
     "types:check": "tsc --noEmit"
   },
-  "workspaces": ["apps/*", "packages/*"]
+  "workspaces": ["apps/*", "packages/*"],
+  "patchedDependencies": {
+    "@react-native/assets-registry@0.74.87": "patches/@react-native%2Fassets-registry@0.74.87.patch"
+  }
 }

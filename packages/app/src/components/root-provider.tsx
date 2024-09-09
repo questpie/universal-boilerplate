@@ -9,14 +9,14 @@ import { QueryClientProvider } from '@tanstack/react-query'
 
 export function RootProviders(props: { children: React.ReactNode; initialAuthData: AuthData }) {
   return (
-    <GluestackUIProvider>
-      <RootStoreProvider>
-        <AuthProvider authData={props.initialAuthData}>
-          <QueryClientProvider client={getQueryClient()}>
+    <QueryClientProvider client={getQueryClient()}>
+      <GluestackUIProvider>
+        <RootStoreProvider>
+          <AuthProvider authData={props.initialAuthData}>
             <ThemeProvider>{props.children}</ThemeProvider>
-          </QueryClientProvider>
-        </AuthProvider>
-      </RootStoreProvider>
-    </GluestackUIProvider>
+          </AuthProvider>
+        </RootStoreProvider>
+      </GluestackUIProvider>
+    </QueryClientProvider>
   )
 }
