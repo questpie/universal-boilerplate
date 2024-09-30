@@ -1,6 +1,6 @@
 /** @jsxImportSource react */
 
-import { apiRsc } from '@questpie/app/api/api.server'
+import { apiServer } from '@questpie/app/api/api.server'
 import { RootProviders } from '@questpie/app/components/root-provider'
 import '@questpie/ui/css'
 import { cn } from '@questpie/ui/lib'
@@ -22,7 +22,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const sessionResp = await apiRsc.auth.session.index.get()
+  const sessionResp = await apiServer.auth.session.index.get()
 
   return (
     <html lang='en' suppressHydrationWarning>
