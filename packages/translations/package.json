@@ -4,12 +4,16 @@
   "files": ["src"],
   "type": "module",
   "dependencies": {
-    "@questpie/shared": "workspace:*"
+    "@questpie/shared": "workspace:*",
+    "accent-cli": "^0.16.2"
+  },
+  "scripts": {
+    "i18n": "bun accent"
   },
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^5.0.0"
   }
 }

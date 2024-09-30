@@ -16,6 +16,7 @@ export function debounce<TFn extends (...args: any[]) => any>(
     }
 
     timeoutID = setTimeout(() => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       fn(...args)
       timeoutID = null
     }, delay)

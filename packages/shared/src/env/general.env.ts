@@ -1,14 +1,21 @@
 import { createEnv } from '@questpie/shared/env/create-env'
-import { generalEnvSchema } from '@questpie/shared/env/general-env.schema'
 import { Type } from '@sinclair/typebox'
 
 /**
  * Shared environment variables that are used in both the client and the server.
  */
 export const generalEnv = createEnv({
-  client: generalEnvSchema,
+  client: {
+    PUBLIC_APP_NAME: Type.String({ default: 'Questpie' }),
+    PUBLIC_NODE_ENV: Type.Union(
+      [Type.Literal('production'), Type.Literal('development'), Type.Literal('test')],
+      {
+        default: 'development',
+      }
+    ),
+  },
   runtimeEnv: {
-    PUBLIC_APP_NAME: process.env.EXPO_PUBLIC_APP_NAME,
-    PUBLIC_NODE_ENV: process.env.EXPO_PUBLIC_NODE_ENV,
+    PUBLIC_APP_NAME: process.env.PUBLIC_APP_NAME,
+    PUBLIC_NODE_ENV: process.env.PUBLIC_NODE_ENV,
   },
 })

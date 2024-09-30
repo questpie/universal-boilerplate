@@ -3,8 +3,12 @@
  */
 
 import { mailClient } from '@questpie/api/mail/mail.client'
-import { logger } from '@questpie/shared/utils/logger'
+import { appLogger } from '@questpie/shared/utils/logger'
 
-mailClient.registerWorker()
+export async function bootWorker() {
+  // THIS is how you can use dependency injection to overwrite stuff work other processes
+  // ioc.use(iocRegister('db', () => null))
+  mailClient.registerWorker()
 
-logger.info('Workers instances running')
+  appLogger.info('Workers instances running')
+}

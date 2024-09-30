@@ -15,8 +15,8 @@
   "scripts": {
     "clean": "bun clean:artifacts && bun clean:lock && bun clean:nm",
     "clean:artifacts": "bun rimraf \"{packages,apps}/**/dist\" \"{packages,apps}/**/build\" \"{packages,apps}/**/out\" \"{packages,apps}/**/.next\" \"{packages,apps}/**/.expo\"",
-    "clean:lock": "bun rimraf --glob ./bun.lockb",
-    "clean:nm": "bun rimraf --glob ./**/node_modules",
+    "clean:lock": "bun rimraf --glob './bun.lockb'",
+    "clean:nm": "bun rimraf --glob './**/node_modules'",
     "cli": "bun run ./scripts/cli.ts",
     "deps:check": "bun check-dependency-version-consistency .",
     "deps:update": "bun npm-check-updates -ui -ws",
@@ -24,9 +24,9 @@
     "dev:web": "cd apps/web && bun run dev",
     "dev:native": "cd apps/native && bun run dev",
     "dev:worker": "cd apps/api && bun run dev:worker",
-    "fix": "bun @biomejs/biome check --write --unsafe ./packages ./apps",
-    "format": "bun @biomejs/biome format --write ./packages ./apps",
-    "lint": "bun @biomejs/biome lint ./packages ./apps",
+    "fix": "bun biome check --write --unsafe ./packages ./apps",
+    "format": "bun biome format --write ./packages ./apps",
+    "lint": "bun biome lint ./packages ./apps",
     "postinstall": "bun deps:check",
     "types:check": "tsc --noEmit"
   },

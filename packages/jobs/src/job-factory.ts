@@ -1,5 +1,5 @@
 import { generalEnv } from '@questpie/shared/env/general.env'
-import { logger } from '@questpie/shared/utils/logger'
+import { appLogger } from '@questpie/shared/utils/logger'
 import type { Static, TAnySchema, TSchema } from '@sinclair/typebox'
 import { Value } from '@sinclair/typebox/value'
 import {
@@ -10,6 +10,8 @@ import {
   type Job,
   type JobsOptions,
   type QueueOptions,
+  type RepeatableOptions,
+  type RepeatOptions,
   type WorkerListener,
   type WorkerOptions,
 } from 'bullmq'
@@ -20,6 +22,14 @@ export type BaseJobOptions<T extends TSchema = TAnySchema> = {
   handler: (job: Job<Static<T>>) => Promise<any>
   workerOptions?: Omit<WorkerOptions, 'connection' | 'prefix'>
   queueOptions?: Omit<QueueOptions, 'connection' | 'prefix'>
+
+  /**
+   * If repeat is specified, registeringWorker will also trigger the job to be repeated.
+   * If there is a schema defined, defaultValues must be provided
+   */
+  repeat?: RepeatOptions & {
+    defaultValues?: Static<T>
+  }
 
   events?: {
     [key in keyof WorkerListener<Static<T>> as `on${Capitalize<key>}`]: WorkerListener<
@@ -40,7 +50,7 @@ export class JobFactory {
 
   private info(job: Job, ...args: any[]) {
     if (this.options.verbose) {
-      logger.info(`[${job.name}:${job.id}]`, ...args)
+      appLogger.info(`[${job.name}:${job.id}]`, ...args)
     }
   }
 
@@ -89,7 +99,15 @@ export class JobFactory {
         worker.on(rawEventName, options.events[event as keyof typeof options.events])
       }
 
-      logger.info('Worker registered', options.name)
+      appLogger.info('Worker registered', options.name)
+
+      if (!options.repeat) {
+        return
+      }
+
+      invoke(options.repeat.defaultValues || {}, {
+        repeat: options.repeat,
+      })
     }
 
     const registerWorker = () => {
