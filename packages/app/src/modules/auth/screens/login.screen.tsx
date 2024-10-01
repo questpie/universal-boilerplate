@@ -30,8 +30,8 @@ export default function LoginScreen() {
       return apiClient.auth['magic-link'].index.post({
         email,
         redirectTo: Platform.select({
-          web: `${env.PUBLIC_APP_URL}/login/callback?token={{token}}`,
-          native: 'questpie://login/callback?token={{token}}',
+          web: `${env.PUBLIC_WEB_URL}/login/callback?token={{token}}`,
+          native: `${env.PUBLIC_NATIVE_SCHEMA}://login/callback?token={{token}}`,
         }),
       })
     },

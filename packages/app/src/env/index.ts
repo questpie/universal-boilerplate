@@ -8,7 +8,8 @@ export const env = createEnv({
   client: envSchema,
   runtimeEnv: {
     PUBLIC_API_URL: process.env.EXPO_PUBLIC_API_URL,
-    PUBLIC_APP_URL: process.env.EXPO_PUBLIC_APP_URL,
+    PUBLIC_WEB_URL: process.env.EXPO_PUBLIC_WEB_URL,
+    PUBLIC_NATIVE_SCHEMA: process.env.EXPO_PUBLIC_NATIVE_SCHEMA,
     PUBLIC_PUSHER_APP_KEY: process.env.EXPO_PUBLIC_PUSHER_APP_KEY,
     PUBLIC_PUSHER_APP_CLUSTER: process.env.EXPO_PUBLIC_PUSHER_APP_CLUSTER,
     PUBLIC_PUSHER_HOST: process.env.EXPO_PUBLIC_PUSHER_HOST,

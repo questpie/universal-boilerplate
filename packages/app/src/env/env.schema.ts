@@ -12,7 +12,8 @@ export const envSchema = {
   // server
   PUBLIC_API_URL: Type.String(),
 
-  PUBLIC_APP_URL: Type.String(),
+  PUBLIC_WEB_URL: Type.String(),
+  PUBLIC_NATIVE_SCHEMA: Type.String(),
 
   // pusher
   PUBLIC_PUSHER_APP_KEY: Type.String(),
