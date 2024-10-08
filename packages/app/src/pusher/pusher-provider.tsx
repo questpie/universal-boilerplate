@@ -1,7 +1,8 @@
-import { createPusherInstance, type PusherOverrides } from '@questpie/web/pusher/pusher.client'
+'use client'
+import { createPusherInstance, type PusherOverrides } from '@questpie/app/pusher/pusher.client'
 import type PusherJs from 'pusher-js'
 import type { Channel } from 'pusher-js'
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useRef, useState } from 'react'
 
 /**
  * Context for Pusher instance and connection status
@@ -14,7 +15,7 @@ const PusherContext = createContext<{ pusher: PusherJs | null; isConnected: bool
  * @param props.overrides - Pusher configuration overrides
  * @param props.children - Child components
  */
-export function PusherProvider(props: { overrides: PusherOverrides; children?: React.ReactNode }) {
+export function PusherProvider(props: { overrides?: PusherOverrides; children?: React.ReactNode }) {
   const [pusher, setPusher] = useState<PusherJs | null>(null)
   const [isConnected, setIsConnected] = useState(false)
 
@@ -22,17 +23,24 @@ export function PusherProvider(props: { overrides: PusherOverrides; children?: R
     const pusherInstance = createPusherInstance(props.overrides)
     setPusher(pusherInstance)
 
-    const handleConnectionStateChange = (state: string) => {
-      setIsConnected(state === 'connected')
+    const handleConnectionStateChange = (state: { previous: string; current: string }) => {
+      console.log('Pusher connection state:', state)
+      setIsConnected(state.current === 'connected')
     }
 
     pusherInstance.connection.bind('state_change', handleConnectionStateChange)
+
+    // Attempt to connect
+    pusherInstance.connect()
+    pusherInstance.signin()
 
     return () => {
       pusherInstance.connection.unbind('state_change', handleConnectionStateChange)
       pusherInstance.disconnect()
     }
-  }, [props.overrides]) // Include props.overrides in the dependency array
+  }, [props.overrides])
+
+  console.log(isConnected)
 
   return (
     <PusherContext.Provider value={{ pusher, isConnected }}>
@@ -79,30 +87,41 @@ export function useSubscription<TMessageData = unknown>({
   channelName,
   eventName,
   onMessage,
-  enabled = true, // Add enabled prop with default value true
+  enabled = true,
 }: UseSubscriptionProps<TMessageData>): { error: Error | null } {
-  const { pusher } = usePusher()
+  const { pusher, isConnected } = usePusher()
   const [channel, setChannel] = useState<Channel | null>(null)
   const [error, setError] = useState<Error | null>(null)
+  const numberOfConnectionRetries = useRef<number>(0)
 
   useEffect(() => {
-    if (!pusher || !enabled) return // Only subscribe if enabled is true
+    if (!pusher || !enabled || !isConnected) return // Only subscribe if enabled is true
 
     try {
       const pusherChannel = pusher.subscribe(channelName)
       setChannel(pusherChannel)
       setError(null)
 
+      pusherChannel.bind('pusher:subscription_error', (status: any) => {
+        console.error('Pusher subscription error:', status)
+        setError(new Error(`Subscription error: ${status.error}`))
+        if (numberOfConnectionRetries.current < 3) {
+          numberOfConnectionRetries.current++
+          setTimeout(() => {}, 1000 * numberOfConnectionRetries.current)
+        }
+      })
+
       return () => {
         pusher.unsubscribe(channelName)
       }
     } catch (err) {
+      console.error('Error subscribing to channel:', err)
       setError(err instanceof Error ? err : new Error('Failed to subscribe to channel'))
     }
-  }, [pusher, channelName, enabled]) // Add enabled to dependency array
+  }, [pusher, channelName, enabled, isConnected])
 
   useEffect(() => {
-    if (channel && enabled) {
+    if (channel && enabled && isConnected) {
       // Only bind if enabled is true
       const eventHandler = (data: TMessageData) => {
         onMessage(data)
@@ -114,7 +133,7 @@ export function useSubscription<TMessageData = unknown>({
         channel.unbind(eventName, eventHandler)
       }
     }
-  }, [channel, eventName, onMessage, enabled]) // Add enabled to dependency array
+  }, [channel, eventName, onMessage, enabled, isConnected]) // Add enabled to dependency array
 
   return { error }
 }
