@@ -1,16 +1,15 @@
 import cors from '@elysiajs/cors'
 import swagger from '@elysiajs/swagger'
+import { httpError } from '@questpie/api/common/http-error-handler'
 import { pinioLogger } from '@questpie/api/common/logger'
 import { Elysia } from 'elysia'
-import { ip } from 'elysia-ip'
 import { rootRoutes } from './root.routes'
-import { httpError } from 'elysia-http-error'
 
 /**
  * Here you can either listen inside server.entry.ts or import to next.js and serve the api from next.js
  */
 export const api = new Elysia()
-  .use(ip())
+  // .use(ip())
   // .use(applyRateLimit())
   .use(httpError())
   .use(
